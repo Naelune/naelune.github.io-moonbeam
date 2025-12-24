@@ -122,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const todayKey = new Date().toDateString();
 
   const cardImage = document.getElementById("cardImage");
+  const note = document.getElementById("note");  
   const drawBtn = document.getElementById("drawBtn");
   const resetBtn = document.getElementById("resetBtn");
   const hint = document.getElementById("hint");
@@ -131,22 +132,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const whisper = document.querySelector(".whisper");
   const footer = document.querySelector(".footer");
 
+function setBackground(isMetaphor) {
+  const resetBtn = document.getElementById("resetBtn");
+
   if (isMetaphor) {
     document.body.style.background = "#bba5c4";
     resetBtn.style.background = "#9c89ab";
 
-    note?.classList.add("night-text");
-    whisper?.classList.add("night-text");
-    footer?.classList.add("night-text");
-    hint?.classList.add("night-text");
+    document.body.classList.add("night");
   } else {
     document.body.style.background = "#ede6d8";
     resetBtn.style.background = "#bfab9b";
 
-    note?.classList.remove("night-text");
-    whisper?.classList.remove("night-text");
-    footer?.classList.remove("night-text");
-    hint?.classList.remove("night-text");  }
+    document.body.classList.remove("night");
+  }
 }
 
   function resetUI() {
