@@ -179,3 +179,7 @@ body {
   font-style: italic;
   display: none;
 }
+
+.night-text {
+  color: #eee9f2;
+}
