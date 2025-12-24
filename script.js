@@ -114,16 +114,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const hint = document.getElementById("hint");
   const whisper = document.querySelector(".whisper");
   const footer = document.querySelector(".footer");
+  const container = document.querySelector('.container');
 
   function setBackground(isMetaphor) {
     if (isMetaphor) {
       document.body.style.background = "#bba5c4";
       resetBtn.style.background = "#9c89ab";
       document.body.classList.add("night");
-    } else {
+      container.style.backgroundImage = "url('https://i.postimg.cc/nrKLC5wN/moon-png.png')";
+        } else {
       document.body.style.background = "#ede6d8";
       resetBtn.style.background = "#bfab9b";
       document.body.classList.remove("night");
+      container.style.backgroundImage = "url('https://i.postimg.cc/0j1Q5xZB/sun-png.png')";      
     }
   }
 
