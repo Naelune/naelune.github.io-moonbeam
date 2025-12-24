@@ -122,15 +122,33 @@ document.addEventListener("DOMContentLoaded", () => {
   const todayKey = new Date().toDateString();
 
   const cardImage = document.getElementById("cardImage");
-  const note = document.getElementById("note");
   const drawBtn = document.getElementById("drawBtn");
   const resetBtn = document.getElementById("resetBtn");
   const hint = document.getElementById("hint");
 
   function setBackground(isMetaphor) {
-    document.body.style.background = isMetaphor ? "#bba5c4" : "#ede6d8";
-    resetBtn.style.background = isMetaphor ? "#9c89ab" : "#bfab9b";
+  const note = document.getElementById("note");
+  const whisper = document.querySelector(".whisper");
+  const footer = document.querySelector(".footer");
+
+  if (isMetaphor) {
+    document.body.style.background =
+      "linear-gradient(180deg, #c6b7d8 0%, #c6b7d8 70%, #bba5c4 100%)";
+
+    resetBtn.style.background = "#9c89ab";
+
+    note?.classList.add("night-text");
+    whisper?.classList.add("night-text");
+    footer?.classList.add("night-text");
+  } else {
+    document.body.style.background = "#ede6d8";
+    resetBtn.style.background = "#bfab9b";
+
+    note?.classList.remove("night-text");
+    whisper?.classList.remove("night-text");
+    footer?.classList.remove("night-text");
   }
+}
 
   function resetUI() {
     cardImage.style.display = "none";
