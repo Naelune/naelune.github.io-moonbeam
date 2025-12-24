@@ -183,6 +183,10 @@ body.night #resetBtn:hover {
   background-color: #ddd3c8;
 }
 
+body.night #resetBtn:hover {
+  background-color: #9c89ab;
+}
+
 :root {
   --night-title: #f2f2f2;
   --night-intro: #e6e6e6;
