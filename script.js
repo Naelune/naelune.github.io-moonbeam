@@ -114,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
         intro.style.display = "none";
+        mainContent.style.display = "block";
       }, 600);
     });
   }
