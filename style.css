@@ -164,27 +164,30 @@ button {
   transition: background-color 0.3s ease;
 }
 
+button:hover {
+  background-color: #ddd3c8;
+}
+
 #resetBtn {
   display: none;
   max-width: 80px;
   width: 100%;
   margin-top: -10px;
   margin-bottom: 5vh;
-}
-
-button:hover,
-#resetBtn:hover,
-body.night button:hover,
-body.night #resetBtn:hover {
-  background-color: #ddd3c8;
+  background-color: #bfab9b;
 }
 
 #resetBtn:hover {
   background-color: #ddd3c8;
 }
 
-body.night #resetBtn:hover {
+body.night #resetBtn {
   background-color: #9c89ab;
+  color: #fff;
+}
+
+body.night #resetBtn:hover {
+  background-color: #b59bc1;
 }
 
 :root {
