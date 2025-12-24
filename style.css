@@ -214,5 +214,9 @@ body.night .footer {
 body.night .sigil,
 body.night .soft-divider {
   color: var(--night-faint);
-  border-color: var(--night-faint);
+  border-color: var(--night-faint);  
 }
+
+body.night #resetBtn:hover {
+  background-color: #ddd3c8;
+}  
