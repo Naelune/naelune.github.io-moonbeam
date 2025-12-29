@@ -140,6 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const todayKey = new Date().toDateString();
   const savedIndex = localStorage.getItem(todayKey);
 
+  if (menu) menu.style.display = "none";
+  if (mainContent) mainContent.style.display = "none";
   if (enterBtn && intro) {
     enterBtn.addEventListener("click", () => {
       intro.style.opacity = "0";
