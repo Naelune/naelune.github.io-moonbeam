@@ -308,7 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
   resetBtn.addEventListener("click", () => {
     localStorage.removeItem(todayKey);
     resetDailyCard();
-    showMenu();
+    dailyCard.style.display = "flex";
   });
 
   revealBtn.addEventListener("click", () => {
