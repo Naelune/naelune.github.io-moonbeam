@@ -213,95 +213,109 @@ document.addEventListener("DOMContentLoaded", () => {
   const menu = document.getElementById("menu");
   const menuCard = document.getElementById("menuCard");
   const menuQuestion = document.getElementById("menuQuestion");
-  const menuBlank = document.getElementById("menuBlank");
-  const mainContent = document.getElementById("mainContent");
-  const resetBtn = document.getElementById("resetBtn");
-  const drawBtn = document.getElementById("drawBtn");
+  const dailyCard = document.getElementById("dailyCard");
+  const whisperBox = document.getElementById("whisperBox");
+  const backToMenuCard = document.getElementById("backToMenuCard");
+  const backToMenuWhisper = document.getElementById("backToMenuWhisper");
+
   const cardImage = document.getElementById("cardImage");
+  const drawBtn = document.getElementById("drawBtn");
+  const resetBtn = document.getElementById("resetBtn");
   const note = document.getElementById("note");
   const hint = document.getElementById("hint");
-  const whisperBox = document.getElementById("whisperBox");
 
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "SENDER_ID",
-    appId: "APP_ID"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
+  const revealBtn = document.getElementById("revealBtn");
+  const questionText = document.getElementById("questionText");
+
+
+  const submitComment = document.getElementById("submitComment");
   const nameInput = document.getElementById("nameInput");
   const messageInput = document.getElementById("messageInput");
-  const submitBtn = document.getElementById("submitComment");
   const commentsList = document.getElementById("commentsList");
 
-  function setBackground(isMetaphor){document.body.classList.toggle("night",isMetaphor);}
-  function resetUI(){ cardImage.style.display="none"; note.style.display="none"; note.textContent=""; hint.style.display="none"; hint.textContent=""; drawBtn.style.display="inline-block"; resetBtn.style.display="none"; setBackground(false); }
+  function setBackground(isMetaphor) {
+    if(isMetaphor) document.body.classList.add("night");
+    else document.body.classList.remove("night");
+  }
 
-  menu.style.display="none";
-  mainContent.style.display="none";
-  whisperBox.classList.add("hidden");
+  function resetDailyCard() {
+    cardImage.style.display = "none";
+    note.textContent = "";
+    note.style.display = "none";
+    hint.textContent = "";
+    hint.style.display = "none";
+    drawBtn.style.display = "inline-block";
+    resetBtn.style.display = "none";
+    setBackground(false);
+  }
 
-  enterBtn.addEventListener("click",()=>{
-    intro.style.opacity="0"; intro.style.pointerEvents="none";
-    setTimeout(()=>{ intro.style.display="none"; menu.style.display="block"; },600);
+
+  menu.style.display = "none";
+  dailyCard.style.display = "none";
+  whisperBox.style.display = "none";
+
+  enterBtn.addEventListener("click", () => {
+    intro.style.opacity = "0";
+    intro.style.pointerEvents = "none";
+    setTimeout(()=> {
+      intro.style.display = "none";
+      menu.style.display = "flex";
+    },600);
   });
 
-  menuCard.addEventListener("click",()=>{
-    menu.style.display="none";
-    mainContent.style.display="block";
-    resetUI();
-    const todayKey = new Date().toDateString();
-    const savedIndex = localStorage.getItem(todayKey);
-    if(savedIndex!==null){
-      const index = parseInt(savedIndex,10);
-      cardImage.src=cards[index]; cardImage.style.display="block";
-      note.textContent="You've Received Today's Card"; note.style.display="block"; note.classList.add("is-active");
-      hint.textContent="Come back tomorrow for a new card."; hint.style.display="block";
-      drawBtn.style.display="none"; resetBtn.style.display="inline-block";
-      setBackground(index>=75);
+
+  menuCard.addEventListener("click", () => {
+    menu.style.display = "none";
+    dailyCard.style.display = "flex";
+    resetDailyCard();
+  });
+
+  backToMenuCard.addEventListener("click", () => {
+    dailyCard.style.display = "none";
+    menu.style.display = "flex";
+  });
+
+  drawBtn.addEventListener("click", () => {
+    const idx = Math.floor(Math.random() * cards.length);
+    cardImage.src = cards[idx];
+    cardImage.style.display = "block";
+    note.textContent = "You've Received Today's Card";
+    note.style.display = "block";
+    hint.textContent = "Come back tomorrow for a new card.";
+    hint.style.display = "block";
+    drawBtn.style.display = "none";
+    resetBtn.style.display = "inline-block";
+    setBackground(idx >= 2);
+  });
+
+  resetBtn.addEventListener("click", resetDailyCard);
+
+
+  menuQuestion.addEventListener("click", () => {
+    menu.style.display = "none";
+    whisperBox.style.display = "block";
+  });
+
+  backToMenuWhisper.addEventListener("click", () => {
+    whisperBox.style.display = "none";
+    menu.style.display = "flex";
+  });
+
+  revealBtn.addEventListener("click", () => {
+    const idx = Math.floor(Math.random() * questions.length);
+    questionText.textContent = questions[idx];
+  });
+
+
+  submitComment.addEventListener("click", () => {
+    const name = nameInput.value.trim() || "Anonymous";
+    const message = messageInput.value.trim();
+    if(message){
+      const div = document.createElement("div");
+      div.textContent = `${name}: ${message}`;
+      commentsList.prepend(div);
+      messageInput.value = "";
+      nameInput.value = "";
     }
   });
-
-  resetBtn.addEventListener("click",()=>{
-    mainContent.style.display="none"; menu.style.display="block";
-  });
-
-  drawBtn.addEventListener("click",()=>{
-    const randomIndex=Math.floor(Math.random()*cards.length);
-    cardImage.src=cards[randomIndex]; cardImage.style.display="block";
-    note.textContent="You've Received Today's Card"; note.style.display="block"; note.classList.add("is-active");
-    hint.textContent="Come back tomorrow for a new card."; hint.style.display="block";
-    localStorage.setItem(new Date().toDateString(),randomIndex);
-    drawBtn.style.display="none"; resetBtn.style.display="inline-block";
-    setBackground(randomIndex>=75);
-  });
-
-  menuQuestion.addEventListener("click",()=>{
-    menu.style.display="none";
-    whisperBox.classList.remove("hidden");
-  });
-
-  // Firebase comments
-  submitBtn.addEventListener("click",()=>{
-    const name = nameInput.value||"Anonymous";
-    const message = messageInput.value.trim();
-    if(!message) return;
-    db.collection("whispers").add({name,message,timestamp:firebase.firestore.FieldValue.serverTimestamp()});
-    messageInput.value="";
-  });
-
-  db.collection("whispers").orderBy("timestamp","asc").onSnapshot(snapshot=>{
-    commentsList.innerHTML="";
-    snapshot.forEach(doc=>{
-      const data=doc.data();
-      const div=document.createElement("div");
-      div.classList.add("comment-item");
-      div.innerHTML=`<div class="name">${data.name}</div><div class="message">${data.message}</div>`;
-      commentsList.appendChild(div);
-    });
-  });
-
 });
