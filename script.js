@@ -140,43 +140,43 @@ document.addEventListener("DOMContentLoaded", () => {
   const todayKey = new Date().toDateString();
   const savedIndex = localStorage.getItem(todayKey);
 
-  if (menu) menu.style.display = "none";
-  if (mainContent) mainContent.style.display = "none";
-  if (enterBtn && intro) {
-    enterBtn.addEventListener("click", () => {
-      intro.style.opacity = "0";
-      intro.style.pointerEvents = "none";
-      
-      setTimeout(() => {
-        intro.style.display = "none";
-        menu.style.display = "block";
-      }, 600);
-    });
+  menu.style.display = "none";
+  mainContent.style.display = "none";
+
+  enterBtn.addEventListener("click", () => {
+    intro.style.opacity = "0";
+    intro.style.pointerEvents = "none";
+
+    setTimeout(() => {
+      intro.style.display = "none";
+      menu.style.display = "block";
+    }, 600);
+  });
 
   menuCard.addEventListener("click", () => {
     menu.style.display = "none";
     mainContent.style.display = "block";
-    });  
+    resetUI();
 
-        if (savedIndex !== null) {
-          const index = parseInt(savedIndex, 10);
-          cardImage.src = cards[index];
-          cardImage.style.display = "block";
-          note.textContent = "You've Received Today's Card";
-          note.style.display = "block";
-          hint.textContent = "Come back tomorrow for a new card.";
-          hint.style.display = "block";
-          drawBtn.style.display = "none";
-          resetBtn.style.display = "inline-block";
-          setBackground(index >= 75);
-        }
-      }, 600);
-    });
-  }
+    if (savedIndex !== null) {
+      const index = parseInt(savedIndex, 10);
+      cardImage.src = cards[index];
+      cardImage.style.display = "block";
+      note.textContent = "You've Received Today's Card";
+      note.style.display = "block";
+      note.classList.add("is-active");
+      hint.textContent = "Come back tomorrow for a new card.";
+      hint.style.display = "block";
+      drawBtn.style.display = "none";
+      resetBtn.style.display = "inline-block";
+      setBackground(index >= 75);
+    }
+  });
 
   backToMenu.addEventListener("click", () => {
     mainContent.style.display = "none";
     menu.style.display = "block";
+    setBackground(false);
   });
 
   drawBtn.addEventListener("click", () => {
@@ -185,9 +185,9 @@ document.addEventListener("DOMContentLoaded", () => {
     cardImage.style.display = "block";
     note.textContent = "You've Received Today's Card";
     note.style.display = "block";
+    note.classList.add("is-active");
     hint.textContent = "Come back tomorrow for a new card.";
     hint.style.display = "block";
-    note.classList.add = ("is-active");
     localStorage.setItem(todayKey, randomIndex);
     drawBtn.style.display = "none";
     resetBtn.style.display = "inline-block";
@@ -196,8 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   resetBtn.addEventListener("click", () => {
     localStorage.removeItem(todayKey);
-    resetUI()
-      note.classList.remove = ("is-active");
+    resetUI();
   });
 
   resetUI();
