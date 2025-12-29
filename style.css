@@ -61,7 +61,7 @@ body {
   background-color: #ddd3c8;
 }
 
-.menu {
+#menu {
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -70,18 +70,14 @@ body {
 
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  max-width: 720px;
-  width: 100%;
-  padding: 20px;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
 }
 
 .menu-item img {
-  width: 100px;
-  height: auto;
-  margin-bottom: 12px;
-  opacity: 0.9;
+  width: 110px;
+  margin-bottom: 8px;
 }
 
 .menu-item span {
@@ -113,9 +109,9 @@ h1 {
 }
 
 .back-btn {
-  position:: absolue
+  position: absolute;
   top: 20px;
-  left 10px;
+  left: 10px;
   margin: 20px 0;
   background: none;
   border: none;
@@ -153,12 +149,8 @@ h1 {
   flex-direction: column;
 }
 
-img {
-  display: none;
-}
-
 #cardImage {
-  display: block;
+  display: none;
   max-width: 260px;
   margin: 40px auto;
   height: auto;
