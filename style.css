@@ -52,7 +52,7 @@ body {
 .menu-grid { display:flex; flex-direction:column; gap:36px; align-items:center; }
 
 .menu-item {
-  background:#d1c4b6;
+  background:#ebe2dd;
   border-radius:16px;
   padding:12px 24px;
   display:flex;
