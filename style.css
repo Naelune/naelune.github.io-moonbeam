@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("https://fonts.googleapis.com/css2?family=Jost");
 
 * {
   box-sizing: border-box;
@@ -58,7 +59,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 80px; /* เพิ่มเว้นด้านบน */
+  padding-top: 80px;
 }
 
 .menu-grid {
@@ -164,6 +165,7 @@ h1 {
 }
 
 button {
+  font-family: 'Jost';
   width: auto;
   max-width: 150px;
   padding: 6px 16px;
