@@ -181,6 +181,11 @@ button:hover {
   background-color: #ddd3c8;
 }
 
+#drawBtn {
+  padding: 5px 12px;
+  font-size: 14px;
+}
+
 #resetBtn {
   display: none;
   max-width: 80px;
