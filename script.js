@@ -283,8 +283,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
   enterBtn.addEventListener("click", () => {
+    menu.style.display = "none";
+    dailyCard.style.display = "none";
+    whisperBox.style.display = "none";
+    
     intro.style.opacity = "0";
     intro.style.pointerEvents = "none";
+    
     setTimeout(() => {
       intro.style.display = "none";
       showPage(menu);
