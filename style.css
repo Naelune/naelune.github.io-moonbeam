@@ -30,6 +30,7 @@ button:hover { background-color:#ddd3c8; }
 #drawBtn { padding:5px 12px; font-size:14px; margin-bottom:40px; }
 #resetBtn { display:none; max-width:80px; width:100%; margin-top:-10px; margin-bottom:5vh; background-color:#bfab9b; }
 
+#dailyCard { display: flex; justify-content: center; align-items: center; min-height: 100vh; position: relative; }
 #dailyCard h1 { font-size: 24px; }
 #dailyCard .intro { font-size: 18px; }
 
