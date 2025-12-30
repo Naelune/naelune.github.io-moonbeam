@@ -228,112 +228,37 @@ document.addEventListener("DOMContentLoaded", () => {
   const questionText = document.getElementById("questionText");
 
   const submitComment = document.getElementById("submitComment");
-  const nameInput = document.getElementById("messageInput");
+  const nameInput = document.getElementById("nameInput");
+  const messageInput = document.getElementById("messageInput");
   const commentsList = document.getElementById("commentsList");
 
   const SCRIPT_URL = "https://script.google.com/macros/u/1/s/AKfycbyZOCs3fyBDLmFYj2mo9uj7GwugwUVv9JVDNvWXTglhKr5IYbpiLyocqNP216CpOZuFOA/exec";
-  
+
   let currentQuestion = "";
-
- revealBtn.addEventListener("click", () => {
-    const idx = Math.floor(Math.random() * questions.length);
-    currentQuestion = questions[idx];
-    questionText.textContent = currentQuestion;
-
-    const feedback = document.createElement("p")
-    feedback.textContent = "Your question is ready!";
-    feedback.style.color = "#555";
-    feedback.style.marginTop = "6px";
-
-    revealBtn.parentNode.insertBefore(feedback, revealBtn.nextSibling);
-
-    setTimeout(() => feedback.remove(), 2500);
-  });
-
-  submitComment.addEventListener("click", (e) => {
-    e.preventDefault();
-    const name = nameInput.value.trim() || "Anonymous";
-    const message = messageInput.value.trim();
-    if (message){
-      const div = document.createElement("div");
-      div.textContent = `${name}: ${message}`;
-      commentsList.prepend(div);
-      messageInput.value = "";
-      nameInput.value = "";
-      alert("Thank you for your whisper.");
-  }
-});
-
-    fetch(SCRIPT_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        question: currentQuestion || "(No question revealed)",
-        answer: answer,
-        name: name
-      })
-    }).then(() => {
-
-      const feedback = document.createElement("p");
-      feedback.textContent = "Your whisper has been sent!";
-      feedback.style.fontSize = "13px";
-      feedback.style.color = "#555";
-      feedback.style.marginTop = "6px";
-      submitComment.parentNode.insertBefore(feedback, submitComment.nextSibling);
-      setTimeout(() => feedback.remove(), 3000);
-
-      messageInput.value = "";
-      nameInput.value = "";
-    }).catch(err => {
-      console.error("Error sending to Google Script:", err);
-    });
-  });
-  
-  enterBtn.addEventListener("click", () => {
-    menu.style.display = "none";
-    dailyCard.style.display = "none";
-    whisperBox.style.display = "none";
-    
-    intro.style.opacity = "0";
-    intro.style.pointerEvents = "none";
-    
-    setTimeout(() => {
-      intro.style.display = "none";
-      menu.style.display = "flex";
-      showPage(menu);
-    }, 600);
-  });
-  
-  menuCard.addEventListener("click", () => {
-  showPage(dailyCard);
-});
-
-backToMenuCard.addEventListener("click", () => {
-  document.body.classList.remove("night");
-  showPage(menu);
-});
-
-menuQuestion.addEventListener("click", () => {
-  showPage(whisperBox);
-});
-
-backToMenuWhisper.addEventListener("click", () => {
-  showPage(menu);
-});
 
   function showPage(page) {
     const pages = [menu, dailyCard, whisperBox];
     pages.forEach(p => p.style.display = "none");
-
-    menu.style.display = "none";
-    dailyCard.style.display = "none";
-    whisperBox.style.display = "none";
-    
     page.style.display = "flex";
   }
-    
+
+  enterBtn.addEventListener("click", () => {
+    intro.style.opacity = "0";
+    intro.style.pointerEvents = "none";
+    setTimeout(() => {
+      intro.style.display = "none";
+      showPage(menu);
+    }, 600);
+  });
+
+  menuCard.addEventListener("click", () => showPage(dailyCard));
+  menuQuestion.addEventListener("click", () => showPage(whisperBox));
+  backToMenuCard.addEventListener("click", () => {
+    document.body.classList.remove("night");
+    showPage(menu);
+  });
+  backToMenuWhisper.addEventListener("click", () => showPage(menu));
+
   function resetDailyCard() {
     cardImage.style.display = "none";
     note.textContent = "";
@@ -356,6 +281,51 @@ backToMenuWhisper.addEventListener("click", () => {
   });
 
   resetBtn.addEventListener("click", resetDailyCard);
-
   resetDailyCard();
+
+  revealBtn.addEventListener("click", () => {
+    const idx = Math.floor(Math.random() * questions.length);
+    currentQuestion = questions[idx];
+    questionText.textContent = currentQuestion;
+
+    const feedback = document.createElement("p");
+    feedback.textContent = "Your question is ready!";
+    feedback.style.fontSize = "13px";
+    feedback.style.color = "#555";
+    feedback.style.marginTop = "6px";
+    revealBtn.parentNode.insertBefore(feedback, revealBtn.nextSibling);
+    setTimeout(() => feedback.remove(), 2500);
+  });
+
+  submitComment.addEventListener("click", (e) => {
+    e.preventDefault();
+    const name = nameInput.value.trim() || "Anonymous";
+    const answer = messageInput.value.trim();
+    if (!answer) return;
+
+    const div = document.createElement("div");
+    div.textContent = `${name}: ${answer}`;
+    commentsList.prepend(div);
+
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        question: currentQuestion || "(No question revealed)",
+        answer: answer,
+        name: name
+      })
+    }).then(() => {
+      const fb = document.createElement("p");
+      fb.textContent = "Your whisper has been sent!";
+      fb.style.fontSize = "13px";
+      fb.style.color = "#555";
+      fb.style.marginTop = "6px";
+      submitComment.parentNode.insertBefore(fb, submitComment.nextSibling);
+      setTimeout(() => fb.remove(), 3000);
+    }).catch(err => console.error("Error sending to Google Script:", err));
+
+    messageInput.value = "";
+    nameInput.value = "";
+  });
 });
