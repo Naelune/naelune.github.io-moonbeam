@@ -63,5 +63,57 @@ body.night #resetBtn:hover { background-color:#b59bc1; }
 .comment-form button { max-width: 80px; padding: 6px 14px; font-size: 13px; margin: 10px auto 0; }
 .comments-list { margin-top: 20px; max-height: 200px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; text-align: left; font-size: 14px; }
 
-.whisper-feedback { margin-top: 12px; font-size: 13px; color: #999; opacity: 0; transition:  opacity 0.6s ease; }
+.log-btn { position: fixed; bottom: 20px; right: 20px; background: transparent; border: 1px solid #ccc; color: #666; padding: 6px 12px; font-size: 0.75rem; border-radius: 14px; cursor: pointer; opacity: 0.6; }
+.log-btn:hover { opacity: 1; }
+.log-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: none; align-items: center; justify-content: center; z-index: 9999; }
+.log-panel { background: #fff; width: min(90%, 420px); max-height: 70vh; border-radius: 18px padding: 18px; display: flex; flex-direction: column; }
+.log-panel h2 { font-size: 1.1rem; margin-bottom: 12px; text-align: center; font-weight: 500; }
+
+.log-content {
+  flex: 1;
+  overflow-y: auto;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.log-item {
+  margin-bottom: 14px;
+}
+
+.log-item time {
+  display: block;
+  font-size: 0.7rem;
+  color: #999;
+  margin-bottom: 2px;
+}
+
+.log-question {
+  font-style: italic;
+  color: #666;
+}
+
+.log-answer {
+  margin-top: 2px;
+}
+
+.log-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.log-actions button {
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: #555;
+}
+
+.log-actions .danger {
+  color: #b55;
+}.whisper-feedback { margin-top: 12px; font-size: 13px; color: #999; opacity: 0; transition:  opacity 0.6s ease; }
 .whisper-feedback.show { opacity: 1; }
