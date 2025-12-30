@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const messageInput = document.getElementById("messageInput");
   const commentsList = document.getElementById("commentsList");
 
-  const SCRIPT_URL = "https://script.google.com/macros/u/1/s/AKfycbyZOCs3fyBDLmFYj2mo9uj7GwugwUVv9JVDNvWXTglhKr5IYbpiLyocqNP216CpOZuFOA/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyZOCs3fyBDLmFYj2mo9uj7GwugwUVv9JVDNvWXTglhKr5IYbpiLyocqNP216CpOZuFOA/exec";
   
   let currentQuestion = "";
 
