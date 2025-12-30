@@ -301,6 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     setTimeout(() => {
       intro.style.display = "none";
+      menu.style.display = "flex";
       showPage(menu);
     }, 600);
   });
