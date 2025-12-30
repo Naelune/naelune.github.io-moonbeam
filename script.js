@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
   menuCard.addEventListener("click", () => {
     menu.style.display = "none";
     dailyCard.style.display = "flex";
-    resetDailyCard();
+    document.body.classList.remove("night");
   });
 
   backToMenuCard.addEventListener("click", () => {
