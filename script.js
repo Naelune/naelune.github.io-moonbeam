@@ -320,7 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
         question: currentQuestion || "(No question revealed)",
-        answer: message,
+        answer: answer,
         name: name
       })
     }).then(() => {
