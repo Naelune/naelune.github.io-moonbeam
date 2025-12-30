@@ -224,6 +224,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const note = document.getElementById("note");
   const hint = document.getElementById("hint");
 
+  const revealBtn = document.getElementById("revealBtn");
+  const questionText = document.getElementById("questionText");
+
+  revealBtn.addEventListener("click", () => {
+    const idx = Math.floor(Math.random() *question.length);
+    questionText.textContent = questions[idx];
+  });
+
   enterBtn.addEventListener("click", () => {
     intro.style.opacity = "0";
     intro.style.pointerEvents = "none";
