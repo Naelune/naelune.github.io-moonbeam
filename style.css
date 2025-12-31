@@ -30,6 +30,7 @@ button { font-family:'Jost'; width:auto; max-width:150px; padding:6px 16px; back
 button:hover { background-color:#ddd3c8; }
 #drawBtn { padding:5px 12px; font-size:14px; margin-bottom:40px; }
 #resetBtn { display:none; max-width:80px; width:100%; margin-top:-10px; margin-bottom:5vh; background-color:#bfab9b; }
+#resetBtn:hover { background-color:#ddd3c8; }
 
 #dailyCard { display: flex; justify-content: center; align-items: center; min-height: 100vh; position: relative; }
 #dailyCard h1 { font-size: 24px; }
@@ -48,7 +49,7 @@ body.night #dailyCard h1, body.night #dailyCard p, body.night #dailyCard .back-b
 body.night #dailyCard .footer, body.night #dailyCard .hint, body.night #dailyCard .whisper, body.night #dailyCard .note { color: var(--night-soft); }
 body.night #dailyCard .sigil, body.night #dailyCard .soft-divider { color: var(--night-faint); border-color: var(--night-faint); }
 body.night #resetBtn { background-color:#9c89ab; color:#fff; }
-body.night #resetBtn:hover { background-color:#b59bc1; }
+body.night #resetBtn:hover { background-color:#d1c7d6; }
 
 .whisper-container { max-width:420px; margin:0 auto; padding:80px 20px 60px; text-align:center; }
 .whisper-sub { font-size:13px; color:#999; margin-bottom:40px; }
