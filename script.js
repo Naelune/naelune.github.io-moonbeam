@@ -406,20 +406,6 @@ clearLogBtn.addEventListener("click", () => {
   }
 });
 
-let isOpen = false;
-
-openMessageBtn.addEventListener("click", () => {
-  isOpen = !isOpen;
-
-  if (isOpen) {
-    messageBox.classList.remove("hidden");
-    openMessageBtn.textContent = "Fold the Letter";
-  } else {
-    messageBox.classList.add("hidden");
-    openMessageBtn.textContent = "Open New Year Message";
-  }
-});
-
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".festival-btn").forEach(btn => {
     btn.addEventListener("click", () => {
