@@ -122,7 +122,6 @@ body.night #resetBtn:hover { background-color:#d1c7d6; }
 .festival-list {
   width: 100%;
   max-width: 550px;
-  margin-top: 56px
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -146,6 +145,10 @@ body.night #resetBtn:hover { background-color:#d1c7d6; }
 .letter-wrap:hover {
   transform: translateY(-4px);
   box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+.letter-wrap: first-child {
+  margin-top: 50px;
 }
 
 .letter-wrap: last-child {
