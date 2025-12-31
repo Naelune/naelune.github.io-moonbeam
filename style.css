@@ -139,7 +139,7 @@ body.night #resetBtn:hover { background-color:#b59bc1; }
   animation: fadeIn 0.6s ease;
 }
 
-.message-text {
+.messageBox {
   font-size: 14px;
   line-height: 1.7;
   color: #555;
@@ -149,6 +149,11 @@ body.night #resetBtn:hover { background-color:#b59bc1; }
 
 .hidden {
   display: none;
+}
+
+.coming-soon {
+  color: #777;
+  font-style: italic;
 }
 
 @keyframes fadeIn {
