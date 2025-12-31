@@ -105,3 +105,55 @@ body.night #resetBtn:hover { background-color:#b59bc1; }
   color: #b55;
 }.whisper-feedback { margin-top: 12px; font-size: 13px; color: #999; opacity: 0; transition:  opacity 0.6s ease; }
 .whisper-feedback.show { opacity: 1; }
+
+.festival-section {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 32px 20px;
+  text-align: center;
+}
+
+.toggle-btn {
+  margin-top: 16px;
+  padding: 10px 22px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background: #f5f5f5;
+}
+
+.message-box {
+  margin-top: 28px;
+  padding: 22px;
+  border-radius: 12px;
+  background: #fafafa;
+  animation: fadeIn 0.6s ease;
+}
+
+.message-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #333;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
